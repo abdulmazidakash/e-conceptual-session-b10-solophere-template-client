@@ -1,7 +1,24 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react'
 import JobCard from '../components/JobCard'
+import axios from 'axios';
 
 const AllJobs = () => {
+
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(()=>{
+    fetchAllJobs()
+  } , [])
+
+  const fetchAllJobs = async() =>{
+
+    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/jobs`)
+    setJobs(data);
+  }
+
+  console.log(jobs);
+  
   return (
     <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
       <div>
