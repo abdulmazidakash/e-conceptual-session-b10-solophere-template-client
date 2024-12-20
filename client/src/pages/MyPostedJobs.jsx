@@ -17,7 +17,7 @@ const MyPostedJobs = () => {
 
   const fetchAllJobs = async() =>{
 
-    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/jobs/${user?.email}`)
+    const {data} = await axios.get(`https://b10-solophere-template.vercel.app/jobs/${user?.email}`)
     setJobs(data);
     // console.log(data);
   }
@@ -27,7 +27,7 @@ const MyPostedJobs = () => {
   const handleDelete = async id =>{
     try{
       const { data } = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/job/${id}`
+        `https://b10-solophere-template.vercel.app/job/${id}`
       )
       console.log(data);
       toast.success('Data deleted successfully !!!')

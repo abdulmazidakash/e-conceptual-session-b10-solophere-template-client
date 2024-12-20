@@ -42,7 +42,7 @@ const AddJob = () => {
 
     try{
          //1. make a post request
-        await axios.post(`${import.meta.env.VITE_API_URL}/add-job`, formData)
+        await axios.post(`https://b10-solophere-template.vercel.app/add-job`, formData)
 
         //2. reset form 
         form.reset()

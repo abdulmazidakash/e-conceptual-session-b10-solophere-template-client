@@ -22,7 +22,7 @@ const UpdateJob = () => {
 
   const fetchJobData = async() =>{
 
-    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/job/${id}`)
+    const {data} = await axios.get(`https://b10-solophere-template.vercel.app/job/${id}`)
     setJob(data);
     // console.log(data);
     // setStartDate(new Date(data.deadline))
@@ -60,7 +60,7 @@ const UpdateJob = () => {
 
     try{
          //1. make a post request
-        await axios.put(`${import.meta.env.VITE_API_URL}/update-job/${id}`, formData)
+        await axios.put(`https://b10-solophere-template.vercel.app/update-job/${id}`, formData)
 
         //2. reset form 
         form.reset()

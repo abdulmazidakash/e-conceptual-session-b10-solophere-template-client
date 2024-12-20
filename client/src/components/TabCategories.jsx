@@ -15,7 +15,7 @@ const TabCategories = () => {
 
   const fetchAllJobs = async() =>{
 
-    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/jobs`)
+    const {data} = await axios.get(`https://b10-solophere-template.vercel.app/jobs`)
     setJobs(data);
   }
 
