@@ -36,6 +36,7 @@ const JobDetails = () => {
     description,
     _id,
     buyer,
+
   } = job || {}
   console.log(job);
 

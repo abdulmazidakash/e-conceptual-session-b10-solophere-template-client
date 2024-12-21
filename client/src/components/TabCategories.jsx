@@ -8,20 +8,20 @@ import axios from 'axios';
 const TabCategories = () => {
 
   const [jobs, setJobs] = useState([]);
-
+  
   useEffect(()=>{
     fetchAllJobs()
   } , [])
 
   const fetchAllJobs = async() =>{
 
-    const {data} = await axios.get(`https://b10-solophere-template.vercel.app/jobs`)
+    const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/jobs`)
     setJobs(data);
   }
-
+console.log(jobs);
   return (
     <Tabs>
-      <div className=' container px-6 py-10 mx-auto'>
+      <div className='container px-6 py-10 mx-auto'>
         <h1 className='text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl '>
           Browse Jobs By Categories
         </h1>
@@ -40,8 +40,8 @@ const TabCategories = () => {
         </div>
         <TabPanel>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {
-            jobs.filter(job => job.category === 'Web Development')
+          { jobs.length && 
+            jobs?.filter(job => job.category === 'Web Development')
             .map(job =>{
              return <JobCard key={job._id} job={job} />
             })
@@ -51,8 +51,8 @@ const TabCategories = () => {
 
         <TabPanel>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {
-            jobs.filter(job => job.category === 'Graphics Design')
+          {jobs.length && 
+            jobs?.filter(job => job.category === 'Graphics Design')
             .map(job =>{
             return  <JobCard key={job._id} job={job} />
             })
@@ -62,8 +62,8 @@ const TabCategories = () => {
 
         <TabPanel>
           <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {
-            jobs.filter(job => job.category === 'Digital Marketing')
+          {jobs.length && 
+            jobs?.filter(job => job.category === 'Digital Marketing')
             .map(job =>{
             return  <JobCard key={job._id} job={job} />
             })

@@ -6,18 +6,21 @@ import axios from 'axios';
 const AllJobs = () => {
 
   const [jobs, setJobs] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
   console.log(jobs);
 
   useEffect(()=>{
+    const fetchAllJobs = async() =>{
+
+      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/all-jobs?filter=${filter}&search=${search}`)
+      setJobs(data);
+      // console.log(data);
+    }
     fetchAllJobs()
-  } , [])
+  } , [filter, search])
 
-  const fetchAllJobs = async() =>{
-
-    const {data} = await axios.get(`https://b10-solophere-template.vercel.app/jobs`)
-    setJobs(data);
-    // console.log(data);
-  }
+ console.log(filter);
   
   return (
     <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
@@ -25,6 +28,7 @@ const AllJobs = () => {
         <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
           <div>
             <select
+              onChange={(e)=> setFilter(e.target.value)}
               name='category'
               id='category'
               className='border p-4 rounded-lg'
@@ -42,6 +46,7 @@ const AllJobs = () => {
                 className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
                 type='text'
                 name='search'
+                onChange={e => setSearch(e.target.value)}
                 placeholder='Enter Job Title'
                 aria-label='Enter Job Title'
               />
